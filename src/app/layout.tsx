@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "Lumina Blog",
     images: [
       {
-        url: "blog.jpg",
+        url: "/blog.jpg",
         width: 1200,
         height: 630,
         alt: "Lumina Blog Cover",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "Lumina Blog - Ideas & Insights",
     description:
       "Explore real experiences and insights on Tech, Design, and Life at Lumina Blog.",
-    images: ["https://luminablog-two.vercel.app/og-image.jpg"],
+    images: ["/blog.jpg"],
   },
   icons: {
     icon: "/blogging-writer-svgrepo-com.svg",
@@ -54,9 +54,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
-      <head>
-        <meta name="google-site-verification" content="hK7kSE69Kolk3Lbl9py2FeehlsEIUkeWT4kO1MdDKqY" />
-      </head>
       <body className="bg-[#FAFAFA] text-slate-900 font-inter antialiased selection:bg-indigo-600 selection:text-white">
         <AuthProvider>
           <Navbar />

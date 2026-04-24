@@ -1,0 +1,6 @@
+{
+  "name": "Lumina Blog",
+  "description": "A modern, responsive blog platform featuring post categorization, search, real-time comments, user profiles, and a secure admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

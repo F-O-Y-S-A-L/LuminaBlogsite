@@ -3,20 +3,44 @@ import './globals.css';
 import { AuthProvider } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
-export const metadata = {
-  title: {
-    default: 'LUMINA | The Architecture of Insight',
-    template: '%s | LUMINA'
+export const metadata: Metadata = {
+  title: "Lumina Blog - Ideas & Insights",
+  description:
+    "Lumina Blog is a modern platform for sharing thoughts and articles on Tech, Design, and Life.",
+  openGraph: {
+    title: "Lumina Blog - Ideas & Insights",
+    description:
+      "Explore real experiences and insights on Tech, Design, and Life at Lumina Blog.",
+    url: "https://lumina-blog.vercel.app",
+    siteName: "Lumina Blog",
+    images: [
+      {
+        url: "blog.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Lumina Blog Cover",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
   },
-  description: 'A cutting-edge blog platform for digital creators, exploring the intersection of modern technology, industrial design, and digital philosophy.',
-  keywords: ['blog', 'tech', 'design', 'lumina', 'insights', 'philosophy'],
-  authors: [{ name: 'Lumina Collective' }],
-  robots: 'index, follow',
+  twitter: {
+    card: "summary_large_image",
+    title: "Lumina Blog - Ideas & Insights",
+    description:
+      "Explore real experiences and insights on Tech, Design, and Life at Lumina Blog.",
+    images: ["https://lumina-blog.vercel.app/og-image.jpg"], // absolute URL
+  },
+  icons: {
+    icon: "/blogging-writer-svgrepo-com.svg",
+  },
 };
+
 
 export const viewport = {
   width: 'device-width',

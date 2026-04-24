@@ -1,16 +1,17 @@
 import { NextResponse } from 'next/server';
-import {dbConnect} from '@/lib/mongodb';
 import { Post, Comment } from '@/lib/models';
+import { dbConnect } from '@/lib/mongodb';
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   await dbConnect();
-  const { slug } = await params;
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
 
   try {
-    const post = await Post.findOne({ slug, status: 'published' })
+    const post = await Post.findOne({ _id: id, status: 'published' })
       .populate('authorId', 'username');
 
     if (!post) {

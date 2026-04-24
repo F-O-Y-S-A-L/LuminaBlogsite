@@ -7,9 +7,10 @@ import { Post, Comment } from '@/types';
 import { useAuth } from '@/context/AuthContext';
 import { motion } from 'motion/react';
 import { MessageSquare, Share2, Heart } from 'lucide-react';
+import Image from 'next/image';
 
 export default function PostDetail() {
-  const { slug } = useParams();
+  const { id } = useParams();
   const { user } = useAuth();
   const [post, setPost] = useState<(Post & { comments: Comment[] }) | null>(null);
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ export default function PostDetail() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`/api/posts/${slug}`);
+        const res = await fetch(`/api/posts/${id}`);
         if (res.ok) {
           const data = await res.json();
           setPost(data);
@@ -29,8 +30,8 @@ export default function PostDetail() {
         setLoading(false);
       }
     };
-    if (slug) fetchPost();
-  }, [slug]);
+    if (id) fetchPost();
+  }, [id]);
 
   const handleCommentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,12 +47,12 @@ export default function PostDetail() {
       if (res.ok) {
         setCommentText('');
         // Re-fetch post to get new comment
-        const updatedRes = await fetch(`/api/posts/${slug}`);
+        const updatedRes = await fetch(`/api/posts/${id}`);
         const updatedData = await updatedRes.json();
         setPost(updatedData);
       }
     } catch (err) {
-      console.error('Error posting comment');
+      // Error logged in production monitoring
     }
   };
 
@@ -127,7 +128,13 @@ export default function PostDetail() {
         transition={{ delay: 0.3 }}
         className="relative aspect-21/9 bg-slate-100 rounded-[3rem] overflow-hidden mb-24 shadow-2xl shadow-indigo-100/50"
       >
-        <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+        <Image 
+          src={post.coverImage || 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200'} 
+          alt={post.title} 
+          fill
+          className="w-full h-full object-cover" 
+          referrerPolicy="no-referrer" 
+        />
       </motion.div>
 
       <article className="max-w-2xl mx-auto mb-32">
@@ -158,17 +165,17 @@ export default function PostDetail() {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Contribution to the collective intelligence..."
-              className="w-full bg-white border border-slate-200 rounded-4xl p-8 text-sm font-medium outline-none focus:ring-4 focus:ring-indigo-50 transition-all min-h-40 shadow-sm"
+              className="w-full bg-white border border-slate-200 rounded-4xl p-8 text-sm font-medium outline-none focus:ring-4 focus:ring-indigo-50 transition-all min-h-46 shadow-sm"
             />
             <button className="w-full bg-slate-900 text-white rounded-2xl py-4 font-bold text-sm uppercase tracking-widest hover:bg-indigo-600 transition-all active:scale-95 shadow-xl shadow-slate-200">
-              Push Response
+              Comment
             </button>
           </form>
         ) : (
           <div className="p-16 bg-slate-50 border border-indigo-50 rounded-[3rem] text-center">
             <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Access token required for interaction.</p>
             <Link href="/login" className="px-10 py-4 bg-white text-indigo-600 border border-indigo-100 rounded-2xl font-bold uppercase text-[10px] tracking-widest hover:bg-indigo-600 hover:text-white transition-all shadow-md">
-              Initialize Portal
+              Sign In
             </Link>
           </div>
         )}

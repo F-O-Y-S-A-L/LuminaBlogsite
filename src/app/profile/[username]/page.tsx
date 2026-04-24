@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'motion/react';
 import { User as UserIcon, FileText as PostIcon, Calendar, Mail, MapPin, Link as LinkIcon, Loader2, User } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ProfilePage() {
@@ -34,7 +35,6 @@ export default function ProfilePage() {
 
     fetchProfile();
   }, [username]);
-  console.log(profileData)
 
   if (loading) {
     return (
@@ -72,11 +72,12 @@ export default function ProfilePage() {
       >
         <header className="flex flex-col md:flex-row gap-16 items-start">
           <div className="relative group">
-            <div className="w-48 h-48 rounded-[3.5rem] bg-indigo-50 border-4 border-white shadow-2xl shadow-indigo-100/50 overflow-hidden">
+            <div className="w-48 h-48 rounded-[3.5rem] bg-indigo-50 border-4 border-white shadow-2xl shadow-indigo-100/50 overflow-hidden relative">
               {user.avatar ? (
-                <img 
+                <Image 
                   src={user.avatar} 
                   alt={user.username} 
+                  fill
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
@@ -141,12 +142,13 @@ export default function ProfilePage() {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <Link href={`/post/${post.slug}`} className="block space-y-6">
-                  <div className="relative aspect-4/5 rounded-[3rem] overflow-hidden bg-slate-50 shadow-2xl shadow-slate-200/50">
+                <Link href={`/post/${post.id}`} className="block space-y-6">
+                  <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden bg-slate-50 shadow-2xl shadow-slate-200/50">
                     {post.coverImage ? (
-                      <img 
+                      <Image 
                         src={post.coverImage} 
                         alt={post.title} 
+                        fill
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         referrerPolicy="no-referrer"
                       />

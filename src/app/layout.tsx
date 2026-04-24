@@ -54,6 +54,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
+      <head>
+        <meta name="google-site-verification" content="hK7kSE69Kolk3Lbl9py2FeehlsEIUkeWT4kO1MdDKqY" />
+      </head>
       <body className="bg-[#FAFAFA] text-slate-900 font-inter antialiased selection:bg-indigo-600 selection:text-white">
         <AuthProvider>
           <Navbar />

@@ -11,7 +11,6 @@ const UserSchema = new Schema({
 
 const PostSchema = new Schema({
   title: { type: String, required: true },
-  slug: { type: String, required: true, unique: true },
   content: { type: String, required: true },
   excerpt: { type: String },
   authorId: { type: Schema.Types.ObjectId, ref: 'User', required: true },

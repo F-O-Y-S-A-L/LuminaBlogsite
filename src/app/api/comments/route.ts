@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/app/api/auth/[...nextauth]/options";
-import {dbConnect} from "@/lib/mongodb";
+import { dbConnect } from "@/lib/mongodb";
 import { Comment } from "@/lib/models";
 
 export async function POST(request: Request) {

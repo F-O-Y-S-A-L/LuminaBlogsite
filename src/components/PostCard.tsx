@@ -21,15 +21,16 @@ export default function PostCard({ post, index }: PostCardProps) {
       className="group"
     >
       <Link href={`/post/${post.id}`} className="block space-y-6">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[2.5rem] bg-slate-100 shadow-2xl shadow-slate-200/50">
+        <div className="relative aspect-4/3 overflow-hidden rounded-[2.5rem] bg-slate-100 shadow-2xl shadow-slate-200/50">
           <Image
             src={post.coverImage || 'https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&q=80&w=1200'}
             alt={post.title}
             fill
+            loading='eager'
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="absolute top-6 left-6">
             <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-slate-900 uppercase tracking-widest border border-white/50">
               {post.category}

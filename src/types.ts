@@ -5,6 +5,7 @@ export interface User {
   role: 'user' | 'admin';
   avatar?: string;
   bio?: string;
+  coverImage?: string
 }
 
 export interface Post {

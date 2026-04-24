@@ -1,25 +1,28 @@
-import { NextResponse } from 'next/server';
-import {dbConnect} from '@/lib/mongodb';
-import { User } from '@/lib/models';
-import bcrypt from 'bcryptjs';
+import { NextResponse } from "next/server";
+import { dbConnect } from "@/lib/mongodb";
+import { User } from "@/lib/models";
+import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
   await dbConnect();
-  
+
   try {
     const { username, email, password } = await request.json();
-    
+
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return NextResponse.json({ error: 'Email already registered' }, { status: 400 });
+      return NextResponse.json(
+        { error: "Email already registered" },
+        { status: 400 },
+      );
     }
 
     const hashedPassword = bcrypt.hashSync(password, 10);
     const newUser = await User.create({
       username,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
     return NextResponse.json({
@@ -27,10 +30,10 @@ export async function POST(request: Request) {
         id: newUser._id.toString(),
         username: newUser.username,
         email: newUser.email,
-        role: newUser.role
-      }
+        role: newUser.role,
+      },
     });
   } catch (error) {
-    return NextResponse.json({ error: 'Registration failed' }, { status: 500 });
+    return NextResponse.json({ error: "Registration failed" }, { status: 500 });
   }
 }

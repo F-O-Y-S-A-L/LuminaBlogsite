@@ -10,15 +10,15 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://luminablog-two.vercel.app"),
-  title: "Lumina Blog - Ideas & Insights",
+  title: "LuminaBlogs - Ideas & Insights",
   description:
-    "Lumina Blog is a modern platform for sharing thoughts and articles on Tech, Design, and Life.",
+    "LuminaBlogs is a modern platform for sharing thoughts and articles on Tech, Design, and Life.",
   openGraph: {
-    title: "Lumina Blog - Ideas & Insights",
+    title: "LuminaBlogs - Ideas & Insights",
     description:
       "Explore real experiences and insights on Tech, Design, and Life at Lumina Blog.",
     url: "https://luminablog-two.vercel.app/admin",
-    siteName: "Lumina Blog",
+    siteName: "LuminaBlogs",
     images: [
       {
         url: "/blog.jpg",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lumina Blog - Ideas & Insights",
+    title: "LuminaBlogs - Ideas & Insights",
     description:
       "Explore real experiences and insights on Tech, Design, and Life at Lumina Blog.",
     images: ["/blog.jpg"],
